@@ -1,10 +1,8 @@
 package ru.ivanov.exceptionhandler;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
+@RestControllerAdvice
 public class Controller {
   private final ExceptionService service;
 
@@ -20,9 +19,4 @@ public class Controller {
     service.methodThrowsException();
   }
 
-  @ExceptionHandler
-  public ResponseEntity<String> handle(PaymentRequiredException exception) {
-    log.error(exception.getMessage(), exception);
-    return new ResponseEntity<>(exception.getMessage(), HttpStatus.PAYMENT_REQUIRED);
-  }
 }
