@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 public class Controller {
@@ -20,6 +22,7 @@ public class Controller {
 
   @ExceptionHandler
   public ResponseEntity<String> handle(PaymentRequiredException exception) {
+    log.error(exception.getMessage(), exception);
     return new ResponseEntity<>(exception.getMessage(), HttpStatus.PAYMENT_REQUIRED);
   }
 }
