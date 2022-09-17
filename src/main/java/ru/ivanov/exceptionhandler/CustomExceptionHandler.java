@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 public class CustomExceptionHandler {
 
   @ExceptionHandler
-  @ResponseStatus(HttpStatus.PAYMENT_REQUIRED)
+  @ResponseStatus(HttpStatus.I_AM_A_TEAPOT)
   public ResponseError handle(PaymentRequiredException exception) {
     log.error(exception.getMessage(), exception);
     return new ResponseError(exception.getMessage(), HttpStatus.PAYMENT_REQUIRED);
